@@ -1,5 +1,5 @@
 <# :
-    @echo off & chcp 65001 >nul & cd /d "%~dp0"
+    @echo off & chcp 65001 >nul & cd /d "%~dp0" & Title PS1 Batch Wrapper 
 
     ::========= SETTINGS =========
     set "Powershell_WindowStyle=Normal"  :: Normal, Hidden, Minimized, Maximized
