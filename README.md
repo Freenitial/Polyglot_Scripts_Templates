@@ -1,6 +1,6 @@
 - If you open this batch with arguments, they will be passed to powershell
 
-- Powershell window is hidden by default. You can change this setting at the begin of the script : set "Powershell_WindowStyle=Normal"
+- You can hide powershell window by setting at the begin of the script : set "Powershell_WindowStyle=Hidden"
 
 - Ensure local running :
    - If you ENABLE this setting :
