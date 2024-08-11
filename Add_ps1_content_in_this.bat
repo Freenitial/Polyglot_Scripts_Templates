@@ -4,8 +4,8 @@
     ::========= SETTINGS =========
     set "Powershell_WindowStyle=Normal"  :: Normal, Hidden, Minimized, Maximized
     set "Show_Loading=true"              :: Show cmd while preparing powershell
-    set "Ensure_Local_Running=true"      :: Re-Write in %temp% then execute. Ignoring lines starting with ';'
-        set "Show_Writing_Lines=true"   :: Show lines writing in %temp% while preparing powershell
+    set "Ensure_Local_Running=true"      :: If not launched from disk 'C', Re-Write in %temp% then execute
+        set "Show_Writing_Lines=true"    :: Show lines writing in %temp% while preparing powershell
         set "Debug_Writting_Lines=false" :: Pause between each line writing (press a key to see next line)
     ::============================
 
