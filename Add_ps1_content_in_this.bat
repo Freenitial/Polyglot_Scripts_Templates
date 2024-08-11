@@ -19,7 +19,7 @@
 ;       REM IF YOU NEED TO ECHO SOMETING IN THIS BLOCK, ADD '1>&2' , example : echo test 1>&2
 ;       REM OPTIONNAL BATCH COMMANDS BEFORE RE-WRITE IN %TEMP%
 ;       for /f "eol=; usebackq delims=" %%k in ("%~f0") do (
-;           setlocal enabledelayedexpansion & set "line=%%k" & echo !line!
+;           setlocal enabledelayedexpansion & set "line=%%k" & echo(!line!
 ;           if "%Show_Writing_Lines%"=="true" echo !line! 1>&2
 ;           if "%Debug_Writting_Lines%"=="true" pause 1>&2 >nul
 ;           endlocal
