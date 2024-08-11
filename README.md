@@ -1,7 +1,7 @@
 - If you open this batch with arguments, they will be passed to powershell
 
 - Ensure local running :
-   ° If you ENABLE this setting :
+   - If you ENABLE this setting :
       - When script NOT launched from 'C' drive :
           > Script will be written into %temp% before executing
           > Auto-destroy from %temp% after execution
