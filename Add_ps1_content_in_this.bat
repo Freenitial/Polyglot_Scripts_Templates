@@ -1,5 +1,5 @@
 <# :
-    @echo off & chcp 65001 >nul & cd /d "%~dp0" & echo. & echo  Loading...
+    @echo off & chcp 65001 >nul & cd /d "%~dp0"
 
     ::========= SETTINGS =========
     set "Powershell_WindowStyle=Normal"  :: Normal, Hidden, Minimized, Maximized
@@ -14,6 +14,7 @@
     if "%Show_Loading%"=="false" (
         if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
         ) else (if "%Show_Writing_Lines%"=="false" if "%Powershell_WindowStyle%"=="Hidden" mode con: cols=55 lines=3)
+    echo. & echo  Loading...
 ;   if "%Ensure_Local_Running%"=="true" if "%~d0" NEQ "C:" ((
 ;       REM EXECUTED ONLY IF NOT LAUNCHED FROM 'C', AND SETTING 'Ensure_Local_Running=true'
 ;       REM IF YOU NEED TO ECHO SOMETING IN THIS BLOCK, ADD '1>&2' , example : echo test 1>&2
