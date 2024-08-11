@@ -1,16 +1,16 @@
 <# :
     @echo off & chcp 65001 >nul & cd /d "%~dp0" & echo. & echo  Loading...
 
-; ::========= SETTINGS =========
+    ::========= SETTINGS =========
     set "Powershell_WindowStyle=Normal"  :: Normal, Hidden, Minimized, Maximized
-    set "Show_Loading=false"             :: Show cmd while preparing powershell
-;   set "Ensure_Local_Running=false"     :: Re-Write in %temp% then execute. Ignoring lines starting with ';'
-;       set "Show_Writing_Lines=false"   :: Show lines writing in %temp% while preparing powershell
-;       set "Debug_Writting_Lines=false" :: Pause between each line writing (press a key to see next line)
-; ::============================
+    set "Show_Loading=true"              :: Show cmd while preparing powershell
+    set "Ensure_Local_Running=true"      :: Re-Write in %temp% then execute. Ignoring lines starting with ';'
+        set "Show_Writing_Lines=true"   :: Show lines writing in %temp% while preparing powershell
+        set "Debug_Writting_Lines=false" :: Pause between each line writing (press a key to see next line)
+    ::============================
 
-;   if "%Show_Writing_Lines%"=="true" set "Show_Loading=true"
-;   if "%Debug_Writting_Lines%"=="true" set "Show_Loading=true" && set "Show_Writing_Lines=true"
+    if "%Show_Writing_Lines%"=="true" set "Show_Loading=true"
+    if "%Debug_Writting_Lines%"=="true" set "Show_Loading=true" && set "Show_Writing_Lines=true"
     if "%Show_Loading%"=="false" (
         if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
         ) else (if "%Show_Writing_Lines%"=="false" if "%Powershell_WindowStyle%"=="Hidden" mode con: cols=55 lines=3)
