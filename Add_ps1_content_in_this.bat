@@ -36,7 +36,7 @@
 ;   REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=true"
     REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - ALWAYS EXECUTED
 
-    if "%~dp0" NEQ "%temp%\" (exit) else ((goto) 2>nul & del "%~f0")  :: Self-destruct if running from %temp%
+    if "%~dp0" NEQ "%temp%\" (exit) else ((goto) 2>nul & del "%~f0")
 #>
 
 
