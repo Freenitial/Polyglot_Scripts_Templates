@@ -26,14 +26,14 @@
 ;       REM OPTIONNAL BATCH COMMANDS AFTER RE-WRITE IN %TEMP%
 ;       )) > "%temp%\%~nx0" & start "" cmd.exe /c "%temp%\%~nx0" %* & exit)
 
-;   REM OPTIONNAL BATCH COMMANDS BEFORE POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=false"
+;   REM OPTIONNAL BATCH COMMANDS BEFORE POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=true"
     REM OPTIONNAL BATCH COMMANDS BEFORE POWERSHELL - ALWAYS EXECUTED
 
     cls & echo. & echo  Launching PowerShell...
     powershell /nologo /noprofile /executionpolicy bypass /windowstyle %Powershell_WindowStyle% /command ^
         "&{[ScriptBlock]::Create((gc """%~f0""" -Raw)).Invoke(@(&{$args}%*))}"
 
-;   REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=false"
+;   REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=true"
     REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - ALWAYS EXECUTED
 
     if "%~dp0" NEQ "%temp%\" (exit) else ((goto) 2>nul & del "%~f0")  :: Self-destruct if running from %temp%
