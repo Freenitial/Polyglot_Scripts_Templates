@@ -1,30 +1,42 @@
 <# :
-    @echo off & chcp 65001 >nul & cd /d "%~dp0" & echo. & echo  Loading...
+    @echo off & chcp 65001 >nul & cd /d "%~dp0" & Title Disk Space Tracker... & echo. & echo  Loading...
 
 ; ::========= SETTINGS =========
-    set "Show_Loading=true"
-;   set "Ensure_Local_Running=true"
-;       set "Show_Writting_Lines=false"
+    set "Powershell_WindowStyle=Normal"  :: Normal, Hidden, Minimized, Maximized
+    set "Show_Loading=true"              :: Show cmd while preparing powershell
+;   set "Ensure_Local_Running=true"      :: Re-Write in %temp% then execute. Ignoring lines starting with ';'
+;       set "Show_Writing_Lines=false"   :: Show lines writing in %temp% while preparing powershell
 ;       set "Debug_Writting_Lines=false" :: Pause between each line writing (press a key to see next line)
 ; ::============================
 
-;   if "%Show_Writting_Lines%"=="true" set "Show_Loading=true"
-;   if "%Debug_Writting_Lines%"=="true" set "Show_Loading=true" && set "Show_Writting_Lines=true"
+;   if "%Show_Writing_Lines%"=="true" set "Show_Loading=true"
+;   if "%Debug_Writting_Lines%"=="true" set "Show_Loading=true" && set "Show_Writing_Lines=true"
     if "%Show_Loading%"=="false" (
         if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
-        ) else (if "%Show_Writting_Lines%"=="false" mode con: cols=55 lines=3)
+        ) else (if "%Show_Writing_Lines%"=="false" if "%Powershell_WindowStyle%"=="Hidden" mode con: cols=55 lines=3)
 ;   if "%Ensure_Local_Running%"=="true" if "%~d0" NEQ "C:" ((
-;       for /f "eol=; usebackq delims=" %%a in ("%~f0") do (
-;           setlocal enabledelayedexpansion & set "line=%%a" & echo !line!
-;           if "%Show_Writting_Lines%"=="true" echo !line! 1>&2
+;       REM EXECUTED ONLY IF NOT LAUNCHED FROM 'C', AND SETTING 'Ensure_Local_Running=true'
+;       REM IF YOU NEED TO ECHO SOMETING IN THIS BLOCK, ADD '1>&2' , example : echo test 1>&2
+;       REM OPTIONNAL BATCH COMMANDS BEFORE RE-WRITE IN %TEMP%
+;       for /f "eol=; usebackq delims=" %%k in ("%~f0") do (
+;           setlocal enabledelayedexpansion & set "line=%%k" & echo !line!
+;           if "%Show_Writing_Lines%"=="true" echo !line! 1>&2
 ;           if "%Debug_Writting_Lines%"=="true" pause 1>&2 >nul
 ;           endlocal
-;       )) > "%temp%\%~nx0" & start cmd.exe /c "%temp%\%~nx0" %* & exit)
+;       REM OPTIONNAL BATCH COMMANDS AFTER RE-WRITE IN %TEMP%
+;       )) > "%temp%\%~nx0" & start "" cmd.exe /c "%temp%\%~nx0" %* & exit)
 
-    setlocal & echo. & echo  Launching PowerShell...
-    powershell /nologo /noprofile /executionpolicy bypass /windowstyle hidden /command ^
+;   REM OPTIONNAL BATCH COMMANDS BEFORE POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=false"
+    REM OPTIONNAL BATCH COMMANDS BEFORE POWERSHELL - ALWAYS EXECUTED
+
+    cls & echo. & echo  Launching PowerShell...
+    powershell /nologo /noprofile /executionpolicy bypass /windowstyle %Powershell_WindowStyle% /command ^
         "&{[ScriptBlock]::Create((gc """%~f0""" -Raw)).Invoke(@(&{$args}%*))}"
-    if "%~dp0" NEQ "%temp%\" (exit) else ((goto) 2>nul & del "%~f0")
+
+;   REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - IGNORED IF NOT LAUNCHED FROM 'C' AND "Ensure_Local_Running=false"
+    REM OPTIONNAL BATCH COMMANDS AFTER POWERSHELL - ALWAYS EXECUTED
+
+    if "%~dp0" NEQ "%temp%\" (exit) else ((goto) 2>nul & del "%~f0")  :: Self-destruct if running from %temp%
 #>
 
 
