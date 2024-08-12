@@ -2,7 +2,7 @@
 
 - You can hide powershell window by setting at the begin of the script : set "Powershell_WindowStyle=Hidden"
 
-- Ensure local running :
+- Ensure local running -
   If you enable this setting AND script NOT launched from 'C' drive:
   - Script will be written into %temp% before executing
   - Auto-destroy from %temp% after execution
