@@ -15,7 +15,7 @@
     if "%Show_Writing_Lines%"=="true" set "Show_Loading=true"
     if "%Debug_Writting_Lines%"=="true" set "Show_Loading=true" && set "Show_Writing_Lines=true"
     if "%Show_Loading%"=="false" (
-        if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
+        if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~f0" %* && exit
         ) else (if "%Show_Writing_Lines%"=="false" if "%Powershell_WindowStyle%"=="Hidden" mode con: cols=55 lines=3)
     echo. & echo  Loading...
 ;   if "%Ensure_Local_Running%"=="true" if "%~d0" NEQ "C:" ((
