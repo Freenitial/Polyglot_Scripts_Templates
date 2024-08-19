@@ -4,6 +4,6 @@
 
 - Ensure local running -
   If you enable this setting AND script NOT launched from '**C**' drive:
-  - Script will be written into _%temp%_ before re-executing from there
+  - Script will be written into _**%temp%**_ before re-executing from there
   - Lines begining with '**;**' will be ignored when re-executing
-  - Auto-destroy from _%temp%_ after execution
+  - Auto-destroy from _**%temp%**_ after execution
