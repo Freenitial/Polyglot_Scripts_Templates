@@ -1,6 +1,8 @@
 <# :
     @echo off & cd /d "%~dp0" & chcp 65001 >nul   &:: Remove/Modify CHCP code page at your convenience
 
+    :: THIS IS AN EXPERIMENTAL TEMPLATE WITHOUT ANY PARTICULAR GOAL EXCEPT QUICK TEST SOME CMD BEHAVIOURS
+
     ::========= SETTINGS =========
     set "Powershell_WindowStyle=Normal"  :: Normal, Hidden, Minimized, Maximized
     set "Keep_Open=false"                :: Keep showing PowerShell console when script exit or crash
